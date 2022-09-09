@@ -14,14 +14,17 @@ namespace Ivasiv.Oleh.RobotClallange.Helpers.Tests
     [TestClass()]
     public class IntelligenceTests
     {
+        [DataRow(99, 1, 4)]
+        [DataRow(1, 98, 9)]
+        [DataRow(4, 5, 25)]
         [TestMethod()]
-        public void FindDistanceTest()
+        public void FindPureDistanceTest(int x, int y, int expetedRes)
         {
-            Position startPossition = new Position(1, 1),
-                endPossition = new Position(5, 9);
-            int expected = 80;
+            Position startPossition = new Position(1, 1);
+            Position endPossition = new Position(x, y);
+            int expected = expetedRes;
 
-            int result = Intelligence.FindDistance(startPossition, endPossition);
+            int result = Intelligence.FindPureDistance(startPossition, endPossition);
 
             Assert.AreEqual(expected, result);
         }

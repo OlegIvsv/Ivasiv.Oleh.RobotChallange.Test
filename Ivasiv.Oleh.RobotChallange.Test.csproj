@@ -58,7 +58,7 @@
   <ItemGroup>
     <Compile Include="HelpersTest\IntelligenceTests.cs" />
     <Compile Include="HelpersTest\EnergyHelperTests.cs" />
-    <Compile Include="HelpersTest\UnitTest1.cs" />
+    <Compile Include="HelpersTest\DirectionHelperTests.cs" />
     <Compile Include="OlehIvasivAlgorithmTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

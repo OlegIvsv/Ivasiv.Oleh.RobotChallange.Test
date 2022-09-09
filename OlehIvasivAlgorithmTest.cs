@@ -17,9 +17,6 @@ namespace Ivasiv.Oleh.RobotChallange.Test
             public CreateNewRobotCommand IfCreateNewRobot(Map map, Robot.Common.Robot myRobot, List<Robot.Common.Robot> robots)
                 => base.IfCreateNewRobot(map, myRobot, robots);
 
-            protected int CanCreateChildWithEnergy(Map map, Robot.Common.Robot myRobot, List<Robot.Common.Robot> robots)
-                => base.CanCreateChildWithEnergy(map, myRobot, robots);
-
             public int EnergyToSuriveMyself(Map map, Robot.Common.Robot myRobot, List<Robot.Common.Robot> robots)
                 => EnergyToSuriveMyself(map, myRobot, robots);
 
