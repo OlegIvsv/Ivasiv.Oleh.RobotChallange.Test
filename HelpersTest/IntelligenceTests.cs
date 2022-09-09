@@ -14,139 +14,68 @@ namespace Ivasiv.Oleh.RobotClallange.Helpers.Tests
     [TestClass()]
     public class IntelligenceTests
     {
-        [DataRow(99, 1, 4)]
-        [DataRow(1, 98, 9)]
-        [DataRow(4, 5, 25)]
+        [DataRow(10, 10, true)]
+        [DataRow(25, 25, false)]
         [TestMethod()]
-        public void FindPureDistanceTest(int x, int y, int expetedRes)
+        public void IsStationFreeTest(int x, int y, bool expectedRes)
         {
-            Position startPossition = new Position(1, 1);
-            Position endPossition = new Position(x, y);
-            int expected = expetedRes;
-
-            int result = Intelligence.FindPureDistance(startPossition, endPossition);
-
-            Assert.AreEqual(expected, result);
-        }
-
-        [TestMethod()]
-        public void FindNearestFreeStationTest()
-        {
-            var map = new Map();
-            map.Stations = new List<EnergyStation>
-            {
-                new EnergyStation() { Position = new Position(80, 80) },
-                new EnergyStation() { Position = new Position(40, 40) },
-                new EnergyStation() { Position = new Position(20, 20) }
-            };
-            var robots = new List<Robot.Common.Robot>
-            {
-                new Robot.Common.Robot() { Position = new Position(20, 20) },
-                new Robot.Common.Robot() { Position = new Position(40, 40) }
-            };
-            var expected = new Position(20, 20);
-            
-            var result = Intelligence.FindNearestFreeStation(robots[0], map, robots);
-
-            Assert.AreEqual(expected, result);
-        }
-
-
-        [TestMethod()]
-        public void IsStationFreeTest_Free()
-        {
-            var station = new EnergyStation() { Position = new Position(10, 10) };
+            var station = new EnergyStation() { Position = new Position(x, y) };
             var robots = new List<Robot.Common.Robot>
             {
                 new Robot.Common.Robot() { Position = new Position(50, 50) },
                 new Robot.Common.Robot() { Position = new Position(25, 25) }
             };
+            bool expected = expectedRes;
+
 
             bool result = Intelligence.IsFreeStation(station, robots[0], robots);
 
-            Assert.IsTrue(result);
+
+            Assert.AreEqual(expected, result);
         }
 
+        [DataRow(10, 10, true)]
+        [DataRow(25, 25, false)]
         [TestMethod()]
-        public void IsStationFreeTest_Occupated()
+        public void IsCellFreeTest(int x, int y, bool expectedRes)
         {
-            var station = new EnergyStation() { Position = new Position(25, 25) };
-            var robots = new List<Robot.Common.Robot>
-            {
-                new Robot.Common.Robot() { Position = new Position(50, 50) },
-                new Robot.Common.Robot() { Position = new Position(25, 25) }
-            };
-
-            bool result = Intelligence.IsFreeStation(station, robots[0], robots);
-
-            Assert.IsFalse(result);
-        }
-
-
-        [TestMethod()]
-        public void IsCellFreeTest_Occupied()
-        {
-            Position cell = new Position(75, 75);
+            Position cell = new Position(x, y);
             var robots = new List<Robot.Common.Robot>
             {
                 new Robot.Common.Robot() { Position = new Position(50, 50) },
                 new Robot.Common.Robot() { Position = new Position(75, 75) },
                 new Robot.Common.Robot() { Position = new Position(25, 25) }
             };
+            bool expected = expectedRes;
+
 
             bool result = Intelligence.IsFreeCell(cell, robots[0], robots);
 
-            Assert.IsFalse(result);
+
+            Assert.AreEqual(expected, result);
         }
 
-        [TestMethod()]
-        public void IsCellFreeTest_Free()
-        {
-            Position cell = new Position(10, 10);
-            var robots = new List<Robot.Common.Robot>
-            {
-                new Robot.Common.Robot() { Position = new Position(75, 75) },
-                new Robot.Common.Robot() { Position = new Position(50, 50) },
-                new Robot.Common.Robot() { Position = new Position(25, 25) }
-            };
-
-            bool result = Intelligence.IsFreeCell(cell, robots[0], robots);
-
-            Assert.IsTrue(result);
-        }
-
-
+        [DataRow(10, 10, 0)]
+        [DataRow(5, 5, null)]
         [TestMethod]
-        public void TheRobotOnAStation_True()
+        public void TheRobotOnAStationTest(int robotX, int robotY, int? stationIndex)
         {
             var station = new EnergyStation() { Position = new Position(10, 10) };
             var map = new Map() { Stations = new List<EnergyStation> { station } };
             var robots = new List<Robot.Common.Robot>
             {
-                new Robot.Common.Robot(){ Position = station.Position}
+                new Robot.Common.Robot(){ Position = new Position(robotX, robotY)}
             };
+            var expected = stationIndex == null ? null : map.Stations.ElementAt(stationIndex.Value);
+
 
             var result = Intelligence.TheRobotOnAStation(map, robots, robots[0]);
 
-            Assert.AreEqual(result, station);
+
+            Assert.AreEqual(result, expected);
         }
 
-        [TestMethod]
-        public void TheRobotOnAStation_False()
-        {
-
-            var station = new EnergyStation() { Position = new Position(10, 10) };
-            var map = new Map() { Stations = new List<EnergyStation> { station } };
-            var robots = new List<Robot.Common.Robot>
-            {
-                new Robot.Common.Robot(){ Position = new Position(5, 5)}
-            };
-
-            var result = Intelligence.TheRobotOnAStation(map, robots, robots[0]);
-
-            Assert.IsNull(result);
-        }
-
+        //TODO: replace the similar passages with a property if there's such a desire
         [TestMethod]
         public void Enemies()
         {
