@@ -75,7 +75,6 @@ namespace Ivasiv.Oleh.RobotClallange.Helpers.Tests
             Assert.AreEqual(result, expected);
         }
 
-        //TODO: replace the similar passages with a property if there's such a desire
         [TestMethod]
         public void Enemies()
         {
