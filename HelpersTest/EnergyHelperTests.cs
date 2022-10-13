@@ -16,7 +16,7 @@ namespace Ivasiv.Oleh.RobotChallange.Test.HelpersTest
         [DataRow(98, 2, 16)]
         [DataRow(98, 97, 41)]
         [TestMethod] 
-        public void EnergyToGetTo(int x, int y, int energy)
+        public void EnergyToGetToTest(int x, int y, int energy)
         {
             Position p1 = new Position(2, 2);
             Position p2 = new Position(x, y);
@@ -33,7 +33,7 @@ namespace Ivasiv.Oleh.RobotChallange.Test.HelpersTest
         [DataRow(98, 99, 1)]
         [DataRow(2, 2, 32 + Details.AttackEnergyLoss)]
         [TestMethod]
-        public void CanGetToWith(int x, int y, int energy)
+        public void CanGetToWithTest(int x, int y, int energy)
         {
             var myRobot = new Robot.Common.Robot() { OwnerName = "owner1", Position = new Position(98, 98) };
             var robots = new List<Robot.Common.Robot>
@@ -96,6 +96,7 @@ namespace Ivasiv.Oleh.RobotChallange.Test.HelpersTest
             {
                 MaxPozition = new Position(99,99),
                 MinPozition = new Position(0, 0),
+                
                 Stations = new List<EnergyStation>
                 {
                     new EnergyStation() { Position = new Position(1,1)},
@@ -117,6 +118,5 @@ namespace Ivasiv.Oleh.RobotChallange.Test.HelpersTest
 
             Assert.AreEqual(canSurvive, result);
         }
-
     }
 }

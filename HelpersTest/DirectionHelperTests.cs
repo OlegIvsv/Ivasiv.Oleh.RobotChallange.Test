@@ -8,7 +8,6 @@ using Ivasiv.Oleh.RobotClallange;
 
 namespace Ivasiv.Oleh.RobotChallange.Test.HelpersTest
 {
-    //TODO : change movement cost from calculation for a whole way to calculation for one step 
     [TestClass]
     public class DirectionHelperTest
     {
