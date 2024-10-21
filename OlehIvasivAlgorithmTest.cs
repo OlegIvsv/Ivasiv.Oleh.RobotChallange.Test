@@ -13,5 +13,7 @@ namespace Ivasiv.Oleh.RobotChallange.Test
     public class OlehIvasivAlgorithmTest
     {
         //TODO: write some tests if it's neccessary
+
+        //зайди в тг
     }
 }
