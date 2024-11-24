@@ -25,11 +25,9 @@ namespace Ivasiv.Oleh.RobotClallange.Helpers.Tests
                 new Robot.Common.Robot() { Position = new Position(50, 50) },
                 new Robot.Common.Robot() { Position = new Position(25, 25) }
             };
+            
             bool expected = expectedRes;
-
-
             bool result = Intelligence.IsFreeStation(station, robots[0], robots);
-
 
             Assert.AreEqual(expected, result);
         }
@@ -46,11 +44,9 @@ namespace Ivasiv.Oleh.RobotClallange.Helpers.Tests
                 new Robot.Common.Robot() { Position = new Position(75, 75) },
                 new Robot.Common.Robot() { Position = new Position(25, 25) }
             };
+            
             bool expected = expectedRes;
-
-
             bool result = Intelligence.IsFreeCell(cell, robots[0], robots);
-
 
             Assert.AreEqual(expected, result);
         }
@@ -62,15 +58,16 @@ namespace Ivasiv.Oleh.RobotClallange.Helpers.Tests
         {
             var station = new EnergyStation() { Position = new Position(10, 10) };
             var map = new Map() { Stations = new List<EnergyStation> { station } };
+            
             var robots = new List<Robot.Common.Robot>
             {
                 new Robot.Common.Robot(){ Position = new Position(robotX, robotY)}
             };
+            
             var expected = stationIndex == null ? null : map.Stations.ElementAt(stationIndex.Value);
-
-
             var result = Intelligence.TheRobotOnAStation(map, robots, robots[0]);
 
+            Environment.FailFast("Oleh give me a task");
 
             Assert.AreEqual(result, expected);
         }
@@ -86,8 +83,8 @@ namespace Ivasiv.Oleh.RobotClallange.Helpers.Tests
                 new Robot.Common.Robot(){ Position = new Position(15, 15), OwnerName = "owner1"}
             };
             var myRobot = new Robot.Common.Robot() { Position=new Position(20, 20), OwnerName = "owner2"};
+            
             var expected = new List<Robot.Common.Robot> { robots[0], robots[2] };
-
             var result = Intelligence.Enemies(robots, myRobot);
 
             CollectionAssert.AreEquivalent(result, expected);
@@ -104,8 +101,8 @@ namespace Ivasiv.Oleh.RobotClallange.Helpers.Tests
                 new Robot.Common.Robot(){ Position = new Position(15, 15), OwnerName = "owner2"}
             };
             var myRobot = new Robot.Common.Robot() { Position = new Position(20, 20), OwnerName = "owner2" };
+            
             var expected = new List<Robot.Common.Robot> { robots[0], robots[2] };
-
             var result = Intelligence.Family(robots, myRobot);
 
             CollectionAssert.AreEquivalent(result, expected);
@@ -129,11 +126,9 @@ namespace Ivasiv.Oleh.RobotClallange.Helpers.Tests
                 new Robot.Common.Robot(){ Position = new Position(2, 2), OwnerName = "owner1"},
                 new Robot.Common.Robot(){ Position = new Position(6, 6), OwnerName = "owner2"}
             };
+            
             var expected = new List<EnergyStation> { map.Stations[1], map.Stations[2] };
-
-
             var result = Intelligence.StationsCanBeOccupied(map, robots, myRobot);
-
 
             CollectionAssert.AreEquivalent(expected, result);
         }
