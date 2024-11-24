@@ -44,9 +44,7 @@ namespace Ivasiv.Oleh.RobotChallange.Test.HelpersTest
             Position newPosition = new Position(x, y);
             int expected = energy;
 
-
             int result = EnergyHelper.CanGetToWith(newPosition, robots, myRobot);
-
 
             Assert.AreEqual(expected, result);
         }
@@ -69,6 +67,7 @@ namespace Ivasiv.Oleh.RobotChallange.Test.HelpersTest
                     new EnergyStation() { Position = new Position(12,12)},
                 }
             };
+            
             var myRobot = new Robot.Common.Robot { Position = new Position(x, y) };
             var robots = new List<Robot.Common.Robot>
             {
@@ -76,9 +75,7 @@ namespace Ivasiv.Oleh.RobotChallange.Test.HelpersTest
                 new Robot.Common.Robot{Position = new Position(50, 50)}
             };
 
-
             var result = EnergyHelper.MostBenneficialStation(map, myRobot, robots);
-
 
             Assert.AreSame(map.Stations[stationIndex], result);
         }
@@ -105,6 +102,7 @@ namespace Ivasiv.Oleh.RobotChallange.Test.HelpersTest
                     new EnergyStation() { Position = new Position(12,12)},
                 }
             };
+            
             var myRobot = new Robot.Common.Robot { Position = new Position(x, y), Energy = energy };
             var robots = new List<Robot.Common.Robot>
             {
@@ -112,9 +110,7 @@ namespace Ivasiv.Oleh.RobotChallange.Test.HelpersTest
                 new Robot.Common.Robot{Position = new Position(50, 50)}
             };
 
-
             var result = EnergyHelper.ChildCanSurvive(map, myRobot, robots);
-
 
             Assert.AreEqual(canSurvive, result);
         }
